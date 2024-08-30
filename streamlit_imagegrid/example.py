@@ -1,6 +1,6 @@
 import streamlit as st
 
-from my_component import my_component
+from streamlit_imagegrid import streamlit_imagegrid
 
 st.set_page_config(layout='wide')
 
@@ -28,6 +28,6 @@ name_input = st.text_input("Enter a name", value="Streamlit")
 zoom  = st.slider("Zoom", 1, 10, 1)
 col1, col2 = st.columns(2)
 urls = urls*zoom
-num_clicks = my_component(name_input,urls=urls, zoom=zoom,key="foo")
+num_clicks = streamlit_imagegrid(name_input,urls=urls, zoom=zoom,key="foo")
 st.markdown("You've clicked %s times!" % num_clicks)
 # st.markdown("You've clicked %s times!" % num_clicks2)
