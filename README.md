@@ -36,6 +36,7 @@ Plugin accepts metadata as long as it respects the following format.
     "metadata":{}
     "tags":{}
 }
+```
 
 The `src` key is required to identify the asset url. Other fields will be joined together to form the tag feild and displayed under the asset after its rendered. The plugin can also take as part of urls mixed dict and strings. e.g
 
