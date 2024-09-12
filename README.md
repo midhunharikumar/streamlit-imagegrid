@@ -1,52 +1,83 @@
 # streamlit-imagegrid
-Streamlit plugin for visualizing images in a pretty grid.
 
+![PyPI version](https://img.shields.io/pypi/v/streamlit-imagegrid?color=brightgreen)
+![License](https://img.shields.io/github/license/midhunharikumar/streamlit-imagegrid)
+![GitHub issues](https://img.shields.io/github/issues/midhunharikumar/streamlit-imagegrid)
+![GitHub stars](https://img.shields.io/github/stars/midhunharikumar/streamlit-imagegrid)
 
-Streamlit native image display does not provide a good UI experiences and misses some crucial features when creating grid of images.
+**A powerful Streamlit plugin for visualizing images and videos in a responsive grid layout.**
 
-The `streamlit-imagegrid` plugin for provides a way to generate a reactive grid of images or videos.
+## Features
+- **Interleaved image and video support:** Add images and videos to a single grid.
+- **Interactive asset selection:** Clickable assets for downstream processing.
+- **Metadata and tag support:** Attach metadata to media assets and display tags.
+- **Flexible format support:** Most popular media formats are supported.
 
+---
 
-In the latest update we provide support for interleaved image and video as well as support for metadata visualization.
+## Installation
 
-Sample usage
+Install the plugin using pip:
+
+```bash
+pip install streamlit-imagegrid
+Sample Usage
+Here’s a quick example of how to use the streamlit-imagegrid plugin in your app:
+```
 
 ```python
 import streamlit_imagegrid
 import streamlit as st
 
-urls = ['http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-        'https://images.freeimages.com/images/large-previews/56d/peacock-1169961.jpg',
-        'https://images.freeimages.com/images/large-previews/bc4/curious-bird-1-1374322.jpg',
-        'https://images.freeimages.com/images/large-previews/9f9/selfridges-2-1470748.jpg',
-        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'] * 2
+# List of image and video URLs
+urls = [
+    'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    'https://images.freeimages.com/images/large-previews/56d/peacock-1169961.jpg',
+    'https://images.freeimages.com/images/large-previews/bc4/curious-bird-1-1374322.jpg',
+    'https://images.freeimages.com/images/large-previews/9f9/selfridges-2-1470748.jpg',
+    'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
+] * 2
 
-selected = streamlit_imagegrid.streamlit_imagegrid("visualization1",urls,4,key='foo')
+# Generate the interactive grid with 4 columns
+selected = streamlit_imagegrid.streamlit_imagegrid("visualization1", urls, 4, key='foo')
 
-st.write(selected)
-
+# Display the selected item
+st.write(f"Selected item: {selected}")
 ```
-Note that `urls` can accept interleaved images and video files. Most popular formats are supported and plugin identifies the type by the extensions. Caching and performance optimizations are still TBD and loading many videos might produce lag. Please report any issues you see to midhun1234@gmail.com .
 
-Plugin accepts metadata as long as it respects the following format.
+## Metadata Support
+You can also pass metadata and tags alongside the media URLs for better organization and display. Here’s how:
 
 ```json
+Copy code
 {
-    "src":"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-    "metadata":{}
-    "tags":{}
+    "src": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    "metadata": {},
+    "tags": {"type": "video", "duration": "1m45s"}
 }
 ```
 
-The `src` key is required to identify the asset url. Other fields will be joined together to form the tag feild and displayed under the asset after its rendered. The plugin can also take as part of urls mixed dict and strings. e.g
+The src key is mandatory for identifying the media, while the metadata and tags can be customized and will be displayed alongside the asset in the grid.
+
+Example usage with metadata:
 
 ```python
-
-urls = [{'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4','tag':'a video'},
-        'https://images.freeimages.com/images/large-previews/56d/peacock-1169961.jpg',
-        'https://images.freeimages.com/images/large-previews/bc4/curious-bird-1-1374322.jpg',
-        'https://images.freeimages.com/images/large-previews/9f9/selfridges-2-1470748.jpg',
-        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4']
-
+urls = [
+    {'src': 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', 'tags': {'type': 'video', 'duration': '1m45s'}},
+    'https://images.freeimages.com/images/large-previews/56d/peacock-1169961.jpg',
+    'https://images.freeimages.com/images/large-previews/bc4/curious-bird-1-1374322.jpg',
+    'https://images.freeimages.com/images/large-previews/9f9/selfridges-2-1470748.jpg',
+    'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
+]
 ```
-The grid is interactive. When an asset is clicked in the grid view, the plugin returns the value from url that was passed to the plugin. This is helpfull for selection of assets from a large set of results to perform downstream processing.
+
+The grid is interactive: when you click an asset, it will return the URL of the clicked item, making it ideal for selecting images or videos from large sets for further processing.
+
+##Performance Considerations
+Please note that the plugin's performance may be impacted when loading many videos. Caching and optimizations are being worked on. Feel free to report any issues you encounter to midhun1234@gmail.com.
+
+## Contributing
+Contributions are welcome! If you have any suggestions or improvements, feel free to submit issues or pull requests. For bug reports or feature requests, email us at midhun1234@gmail.com.
+
+## License
+streamlit-imagegrid is licensed under the MIT License. See the LICENSE file for more details.
