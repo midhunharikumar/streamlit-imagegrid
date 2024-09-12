@@ -49,7 +49,6 @@ st.write(f"Selected item: {selected}")
 You can also pass metadata and tags alongside the media URLs for better organization and display. Here’s how:
 
 ```json
-Copy code
 {
     "src": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
     "metadata": {},
