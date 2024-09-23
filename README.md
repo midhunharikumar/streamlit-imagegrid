@@ -5,7 +5,8 @@
 ![GitHub issues](https://img.shields.io/github/issues/midhunharikumar/streamlit-imagegrid)
 ![GitHub stars](https://img.shields.io/github/stars/midhunharikumar/streamlit-imagegrid)
 
-![Uploading image.png…]()
+<img width="1326" alt="image" src="https://github.com/user-attachments/assets/5225f2ed-ba2d-496d-9f7d-8b512bc13072">
+
 
 **A powerful Streamlit plugin for visualizing images and videos in a responsive grid layout.**
 
