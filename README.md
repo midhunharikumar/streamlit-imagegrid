@@ -21,9 +21,10 @@ Install the plugin using pip:
 
 ```bash
 pip install streamlit-imagegrid
-Sample Usage
-Here’s a quick example of how to use the streamlit-imagegrid plugin in your app:
+
 ```
+#### Sample Usage
+Here’s a quick example of how to use the streamlit-imagegrid plugin in your app:
 
 ```python
 import streamlit_imagegrid
@@ -58,7 +59,7 @@ You can also pass metadata and tags alongside the media URLs for better organiza
 
 The src key is mandatory for identifying the media, while the metadata and tags can be customized and will be displayed alongside the asset in the grid.
 
-Example usage with metadata:
+#### Example usage with metadata:
 
 ```python
 urls = [
@@ -72,7 +73,7 @@ urls = [
 
 The grid is interactive: when you click an asset, it will return the URL of the clicked item, making it ideal for selecting images or videos from large sets for further processing.
 
-##Performance Considerations
+## Performance Considerations
 Please note that the plugin's performance may be impacted when loading many videos. Caching and optimizations are being worked on. Feel free to report any issues you encounter to midhun1234@gmail.com.
 
 ## Contributing
