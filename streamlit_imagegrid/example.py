@@ -25,9 +25,9 @@ urls = [{"src":'https://t3.ftcdn.net/jpg/08/27/75/34/240_F_827753427_Sr2wCt8kJIW
 
 
 name_input = st.text_input("Enter a name", value="Streamlit")
-zoom  = st.slider("Zoom", 1, 10, 1)
+zoom  = st.slider("Zoom", 1, 10, 3)
 col1, col2 = st.columns(2)
-urls = urls*zoom
+urls = urls
 num_clicks = streamlit_imagegrid(name_input,urls=urls, zoom=zoom,key="foo")
-st.markdown("You've clicked %s times!" % num_clicks)
-# st.markdown("You've clicked %s times!" % num_clicks2)
+
+

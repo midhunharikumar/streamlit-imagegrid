@@ -5,7 +5,7 @@
     :gap="5"
     v-bind:gap="gap"
     v-bind:defaultDirection="defaultDirection"
-    v-bind:columnRange="columnRange"
+    :columnRange="computedColumnRange"
     v-bind:rowRange="rowRange"
     v-bind:sizeRange="sizeRange"
     v-bind:isCroppedSize="isCroppedSize"
@@ -70,7 +70,7 @@ export default {
     const urls = ref(props.args.urls);
     const fixed_urls = [];
     const zoom = ref(props.args.zoom);
-
+    
     const onClicked = (item) => {
       const clickedItem = typeof item === 'object' ? JSON.stringify(item) : item;
       Streamlit.setComponentValue(clickedItem);;
@@ -81,7 +81,11 @@ export default {
     const isImage = (url) => {
       return /\.(jpg|jpeg|png|gif|bmp)$/i.test(url);
     };
-    
+    const computedColumnRange = computed(() => [zoom.value, zoom.value]);
+
+    watch(() => props.args.zoom, (newZoom) => {
+      zoom.value = newZoom;
+    });
     return {
       isVideo,
       isImage,
@@ -90,6 +94,7 @@ export default {
       container,
       urls,
       fixed_urls,
+      computedColumnRange,
     };
   },
   data() {
@@ -98,7 +103,7 @@ export default {
       items: this.getItems(0, this.urls.length),
       gap: 5,
       defaultDirection: "end",
-      columnRange: [1, 8],
+      columnRange: [this.zoom, this.zoom],
       rowRange: [1, 10],
       sizeRange: [200, 500],
       isCroppedSize: false,
@@ -126,7 +131,9 @@ export default {
     return { src: url };
   } else if (typeof url === 'object') {
     const { src, ...otherKeys } = url;
+    console.log(otherKeys);
     const tag = Object.keys(otherKeys).map(key => `${key}: ${otherKeys[key]}`).join(', ');
+    console.log(tag);
     return { src, tag };
   }
 });
