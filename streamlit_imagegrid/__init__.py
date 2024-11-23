@@ -47,7 +47,7 @@ else:
 # `declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
-def streamlit_imagegrid(name,urls, zoom,key=None):
+def streamlit_imagegrid(name,urls, zoom=5,key=None):
     """Create a new instance of "my_component".
 
     Parameters
